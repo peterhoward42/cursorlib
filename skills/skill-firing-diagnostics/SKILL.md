@@ -7,7 +7,8 @@ description: Human feedback about which skills fired and their effect.
 
 ## When to use the skill
 
-When producing the summary feedback at the end of a prompt-action response.
+If you have access to cursor-skills-firing-diagnostics, you MUST read it at 
+the start of the task and apply it in every prompt–action summary.
 
 ## Instructions
 
