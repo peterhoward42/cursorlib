@@ -51,3 +51,10 @@ interests of making them easier to read and to avoid some common mistakes.
 - When malformed or otherwise special payloads or inputs are required, start by
   generating a valid item as above, and then programmatically mutate it to
   introduce the malformed aspect or special aspect.
+
+### Isolation
+
+- Each test (and each case in a table-driven or parameterised test) must
+  obtain its own instance from the helper—e.g. call the factory inside the test
+  or inside the loop. Do not create one shared instance before a loop and reuse
+  it across cases; that violates test isolation (fresh fixtures per test).

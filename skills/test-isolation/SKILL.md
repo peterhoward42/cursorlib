@@ -63,6 +63,39 @@ Good:
 test1 creates its own user  
 test2 creates its own user
 
+#### Table-driven and parameterised tests
+
+Treat **each test case** (each row, each subtest, each parameter combination) as a separate test for isolation purposes.
+
+- Each case must get a **fresh fixture**; do not create one fixture before the loop and reuse it across cases.
+- Create the fixture **inside** the loop (inside each `t.Run`, `@ParameterizedTest` iteration, `pytest` parametrized case, etc.), so each case constructs its own world.
+- Copying a shared "base" object in the loop (e.g. `ev := base` then mutate `ev`) still counts as reusing: the shared base is the reused object. Call the factory or constructor inside the loop instead.
+
+Bad (shared base across cases):
+
+```go
+base := validFixture()
+for _, tc := range cases {
+    t.Run(tc.name, func(t *testing.T) {
+        ev := base   // reuse: same base for every case
+        tc.mutate(&ev)
+        ...
+    })
+}
+```
+
+Good (fresh fixture per case):
+
+```go
+for _, tc := range cases {
+    t.Run(tc.name, func(t *testing.T) {
+        ev := validFixture()   // fresh for this case
+        tc.mutate(&ev)
+        ...
+    })
+}
+```
+
 ---
 
 ### 3. No Order Dependence
@@ -186,6 +219,7 @@ Do NOT generate tests that:
 - rely on uncontrolled randomness
 - interact with real external systems
 - reuse mutable objects across tests
+- use a single shared fixture for multiple cases in a table-driven or parameterised test (create fixture inside the loop per case)
 
 ---
 
@@ -195,6 +229,7 @@ Reject or rewrite the test if any answer is yes:
 
 - Could another test change the outcome?
 - Does the test rely on a previous test's setup?
+- In a table-driven test, is one fixture created before the loop and reused for every case?
 - Does it depend on system time?
 - Does it depend on randomness without a fixed seed?
 - Does it modify global state?
