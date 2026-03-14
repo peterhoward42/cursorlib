@@ -16,7 +16,7 @@ linter reports.
 - Do not alter the commands default configuration
 
 ```
-golangci-lint .
+golangci-lint
 ```
 
 ## Fixing the linter errors
