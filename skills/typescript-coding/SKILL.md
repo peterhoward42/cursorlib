@@ -1,46 +1,28 @@
 ---
-summary: Guidance for composing and refactoring TypeScript and JavaScript
-application code, focusing on clear design, honest signatures, useful
-encapsulation, and avoiding unnecessary abstraction.
+name: honest-typescript-refactoring
+description: "Use when composing or modifying TypeScript or JavaScript application code. Enforce honest inputs and explicit data flow."
 ---
 
+# Honest TypeScript Refactoring
 
-# TypeScript for Application Code
+When changing existing code, prefer correctness and clarity over minimising changes.
 
-This skill guides code generation and refactoring for **TypeScript and JavaScript application code**, not public libraries. The aim is to produce code that is easy to read, easy to trace, easy to change locally, and honest about what really varies.
+Treat this as application code, not a public API. Backwards compatibility is not a goal.
 
-The default bias is toward **clarity over flexibility**, while still preserving:
-- separation of concerns
-- low coupling between subsystems
-- useful encapsulation
-- interface-based seams where they materially help testing or boundaries
-- type information where it clarifies the code rather than merely making it more formal
+## Required
 
-## Core stance
+- If a function needs new data, make it a required parameter
+- Update all call sites to pass the correct value
+- Keep signatures semantically honest
+- Make data flow explicit and traceable
 
-Write code for the system that actually exists.
+## Forbidden
 
-Do not introduce generality unless there is a concrete need for it in the application. A small amount of duplication is often better than premature abstraction.
+- Do not add optional parameters (`?`) just to avoid updating callers
+- Do not add fallback or default logic to compensate for missing inputs
+- Do not preserve behaviour by introducing hidden defaults
+- Do not add abstraction or wrappers purely to reduce blast radius
 
-Prefer code that lets a reader quickly answer:
-- What does this function or class need?
-- What does it return or change?
-- What calls it?
-- What is genuinely variable here?
-- Where is the state and who owns it?
-- Which boundaries matter?
+## Rule
 
-## Primary design doctrines
-
-### 1. Keep signatures honest
-
-A function should require the inputs it conceptually needs.
-
-- Do **not** make parameters optional just because TypeScript allows it.
-- Do **not** hide missing required information behind fallback logic inside the function.
-- Use defaults only when the default is a real part of the function's meaning.
-
-Good:
-
-```ts
-function formatPrice(amount: number, currency = 'GBP'): string
+Missing data must be required and propagated, not absorbed.
