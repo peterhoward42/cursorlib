@@ -1,6 +1,11 @@
 ---
 name: semantic-rename-auditor
-description: Detects names that have become semantically misleading as responsibilities evolved, then autonomously renames them in small batches while keeping the Go repository test-clean. Performs semantic correction only, never architectural refactoring.
+description: >-
+  Detect names that became semantically misleading as responsibilities evolved,
+  then rename them in small batches while keeping the Go repo test-clean.
+  Semantic correction only, not architectural refactoring. Use when the user
+  asks to audit names, check semantic drift, improve naming accuracy, or run a
+  semantic rename pass.
 ---
 
 # Semantic Rename Auditor

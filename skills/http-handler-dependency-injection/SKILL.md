@@ -1,8 +1,10 @@
 ---
 name: http-handler-dependency-injection
-description: >
-	Use when generating or modifying Go HTTP handlers, serverless 
-	HTTP entrypoints, or Google Cloud Functions.
+description: >-
+  Go HTTP handler architecture: handlers as composition roots; request logic on
+  Application methods with explicit Dependencies. Use when generating or
+  modifying Go HTTP handlers, serverless HTTP entrypoints, or Google Cloud
+  Functions.
 ---
 
 

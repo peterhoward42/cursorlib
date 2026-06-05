@@ -1,9 +1,9 @@
-
 ---
 name: go-linting
-description: A process to improve a codebase's quality by running a strongly
-optionionated linter, and updating the code to deal with all the errors the
-linter reports.
+description: >-
+  Run golangci-lint and fix all reported issues in a Go codebase. Use only when
+  the user explicitly asks to lint or fix linter errors.
+disable-model-invocation: true
 ---
 
 ## When to apply this skill

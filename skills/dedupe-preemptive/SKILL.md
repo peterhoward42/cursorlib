@@ -1,6 +1,9 @@
 ---
 name: dedupe-preemptive
-description: Prevent accidental semantic duplication during development by reusing existing repository constructs before introducing new ones.
+description: >-
+  Prevent accidental semantic duplication by reusing existing repository
+  constructs before introducing new helpers, fakes, fixtures, or utilities. Use
+  when adding new abstractions, helpers, or test support code.
 ---
 
 # dedupe-preemptive

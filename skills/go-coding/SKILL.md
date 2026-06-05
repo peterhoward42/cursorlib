@@ -1,6 +1,8 @@
 ---
 name: go-coding
-description: Mandatory rules when generating or editing go source code.
+description: >-
+  Mandatory rules when generating or editing Go source code (e.g. no init() for
+  package initialization). Use when writing or modifying Go files.
 ---
 
 ## When to apply these rules

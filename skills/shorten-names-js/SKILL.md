@@ -1,3 +1,11 @@
+---
+name: shorten-names-js
+description: >-
+  Shorten overlong file, directory, and symbol names in JavaScript and
+  TypeScript while preserving meaning and consistency. Use when renaming JS/TS
+  artifacts, tightening naming, or reducing redundant context in identifiers.
+---
+
 # Skill: Shorten Overlong Names in JavaScript and TypeScript
 
 Purpose:

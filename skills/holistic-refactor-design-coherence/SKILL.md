@@ -1,6 +1,10 @@
 ---
 name: holistic-refactor-design-coherence
-description: Perform a holistic, multi-session refactor of a JavaScript/TypeScript web app repo to improve design coherence. Only use this skill when explicitly requested by the user. Do not invoke automatically.
+description: >-
+  Perform a holistic, multi-session refactor of a JavaScript/TypeScript web app
+  repo to improve design coherence. Use only when the user explicitly requests
+  this refactor; do not invoke automatically.
+disable-model-invocation: true
 ---
 
 ## Purpose

@@ -1,7 +1,9 @@
-
 ---
 name: cursor-skills-firing-diagnostics
-description: Human feedback about which skills fired and their effect.
+description: >-
+  Meta skill: report which skills were loaded and how each affected the work.
+  Apply at the start of every task and include skill-firing feedback in each
+  prompt-action summary when this skill is available.
 ---
 
 

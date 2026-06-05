@@ -1,3 +1,11 @@
+---
+name: test-isolation
+description: >-
+  Keep tests independent, deterministic, and parallel-safe with fresh fixtures
+  per test and no shared mutable state. Use when writing, reviewing, or
+  refactoring tests.
+---
+
 # Cursor Skill: Test Isolation and Determinism
 
 ## Intent

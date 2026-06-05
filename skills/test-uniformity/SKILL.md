@@ -1,8 +1,8 @@
-
 ---
 name: test-uniformity
-description: Some ways to leverage uniformity and standards in tests in the
-interests of making them easier to read and to avoid some common mistakes.
+description: >-
+  Apply uniformity and conventions in tests to improve readability and avoid
+  common mistakes (e.g. mixed assertion syntax). Use whenever writing test code.
 ---
 
 ## When to apply this skill

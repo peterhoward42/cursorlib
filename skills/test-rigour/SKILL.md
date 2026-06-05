@@ -1,3 +1,11 @@
+---
+name: test-rigour
+description: >-
+  Generate rigorous tests with Given/When/Then structure, fixtures as the single
+  source of truth, and derived expectations. Use when writing or reviewing
+  tests that must not drift between fixtures and assertions.
+---
+
 # Cursor Skill: Robust Test Generation
 
 ## Intent

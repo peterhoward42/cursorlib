@@ -1,6 +1,9 @@
 ---
 name: test-writing
-description: Write well-scoped tests for named functions, validators, handlers, and application services, using tests-rigour and test-isolation.
+description: >-
+  Write well-scoped tests for named functions, validators, handlers, and
+  application services using test-rigour and test-isolation. Use when the user
+  asks to write tests or add test coverage.
 ---
 
 # test-writing
