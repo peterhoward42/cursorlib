@@ -43,6 +43,7 @@ Ad-hoc prompts work for one-offs. They do not scale when you care about **stable
 - **Tests** — [`test-writing`](skills/test-writing/SKILL.md) assumes [`test-rigour`](skills/test-rigour/SKILL.md), [`test-isolation`](skills/test-isolation/SKILL.md), and [`test-fakes-over-mocks`](skills/test-fakes-over-mocks/SKILL.md); add [`test-uniformity`](skills/test-uniformity/SKILL.md) for style and common pitfalls.
 - **Go application shape** — [`http-handler-dependency-injection`](skills/http-handler-dependency-injection/SKILL.md) pairs with [`go-coding`](skills/go-coding/SKILL.md) and [`refactoring`](skills/refactoring/SKILL.md) when you are moving code to match that structure.
 - **Hygiene** — [`dedupe-preemptive`](skills/dedupe-preemptive/SKILL.md) before adding helpers; [`documentation-skim`](skills/documentation-skim/SKILL.md) when you want comments optimized for readers skimming large codebases.
+- **Planning** — [`planning-phases`](skills/planning-phases/SKILL.md) for brief, numbered implementation plans with inline progress tags, sized for multi-session execution.
 
 ### Skill index
 
@@ -53,6 +54,7 @@ Ad-hoc prompts work for one-offs. They do not scale when you care about **stable
 | [`go-coding`](skills/go-coding/SKILL.md) | Mandatory rules for Go edits (e.g. `init()` usage). |
 | [`go-linting`](skills/go-linting/SKILL.md) | Run `golangci-lint` and fix reported issues when explicitly requested. |
 | [`http-handler-dependency-injection`](skills/http-handler-dependency-injection/SKILL.md) | Go HTTP / serverless / GCF: handlers as composition roots; logic on `Application` with explicit `Dependencies`. |
+| [`planning-phases`](skills/planning-phases/SKILL.md) | Brief phased plans in markdown with inline DONE tags; end-state shaped; session-sized steps. |
 | [`refactoring`](skills/refactoring/SKILL.md) | Strengthen separation of concerns via structure and naming **without** behavior change; defers to stronger architecture skills. |
 | [`semantic-rename-auditor-for-go`](skills/semantic-rename-auditor-for-go/SKILL.md) | Correct misleading names in small batches; tests stay green; semantics only, not drive-by refactors. |
 | [`shorten-names-js`](skills/shorten-names-js/SKILL.md) | Shorten overlong JS/TS names (files, dirs, symbols) while preserving meaning. |
