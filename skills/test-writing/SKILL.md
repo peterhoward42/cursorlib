@@ -11,8 +11,9 @@ description: >-
 This skill is for writing tests.
 
 Tests must be designed according to:
-- `tests-rigour`
+- `test-rigour`
 - `test-isolation`
+- `test-fakes-over-mocks`
 
 ## Instructions
 

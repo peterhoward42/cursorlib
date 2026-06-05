@@ -40,7 +40,7 @@ Ad-hoc prompts work for one-offs. They do not scale when you care about **stable
 
 ### Bundles that compose well
 
-- **Tests** — [`test-writing`](skills/test-writing/SKILL.md) assumes [`test-rigour`](skills/test-rigour/SKILL.md) and [`test-isolation`](skills/test-isolation/SKILL.md); add [`test-uniformity`](skills/test-uniformity/SKILL.md) for style and common pitfalls.
+- **Tests** — [`test-writing`](skills/test-writing/SKILL.md) assumes [`test-rigour`](skills/test-rigour/SKILL.md), [`test-isolation`](skills/test-isolation/SKILL.md), and [`test-fakes-over-mocks`](skills/test-fakes-over-mocks/SKILL.md); add [`test-uniformity`](skills/test-uniformity/SKILL.md) for style and common pitfalls.
 - **Go application shape** — [`http-handler-dependency-injection`](skills/http-handler-dependency-injection/SKILL.md) pairs with [`go-coding`](skills/go-coding/SKILL.md) and [`refactoring`](skills/refactoring/SKILL.md) when you are moving code to match that structure.
 - **Hygiene** — [`dedupe-preemptive`](skills/dedupe-preemptive/SKILL.md) before adding helpers; [`documentation-skim`](skills/documentation-skim/SKILL.md) when you want comments optimized for readers skimming large codebases.
 
@@ -57,6 +57,7 @@ Ad-hoc prompts work for one-offs. They do not scale when you care about **stable
 | [`semantic-rename-auditor-for-go`](skills/semantic-rename-auditor-for-go/SKILL.md) | Correct misleading names in small batches; tests stay green; semantics only, not drive-by refactors. |
 | [`shorten-names-js`](skills/shorten-names-js/SKILL.md) | Shorten overlong JS/TS names (files, dirs, symbols) while preserving meaning. |
 | [`skill-firing-diagnostics`](skills/skill-firing-diagnostics/SKILL.md) | Meta: have the agent report which skills it loaded and how they affected the work. |
+| [`test-fakes-over-mocks`](skills/test-fakes-over-mocks/SKILL.md) | Prefer dedicated fakes over mock libraries for test doubles. |
 | [`test-isolation`](skills/test-isolation/SKILL.md) | Keep tests independent and robust. |
 | [`test-rigour`](skills/test-rigour/SKILL.md) | Rigorous tests: Given/When/Then, fixtures as single source of truth, derived expectations. |
 | [`test-uniformity`](skills/test-uniformity/SKILL.md) | Conventions that improve readability and avoid common test mistakes. |
