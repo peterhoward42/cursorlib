@@ -1,11 +1,48 @@
 ---
-description: Markdown writing conventions (placeholder)
-globs: **/*.md
+description: >-
+  Markdown for skills, rules, and docs: brief, expert-facing prose; include
+  only what a skilled reader needs; no tables, tutorial structure, or padding.
+globs: "**/*.md"
 alwaysApply: false
 ---
 
 # Markdown guidelines
 
-<!-- TODO: replace placeholder content -->
+## Audience
 
-Placeholder rules for markdown in this project.
+Assume an engaged reader with relevant prior knowledge. Use domain terms for precision and brevity; do not onboard or gloss.
+
+## Inclusion test
+
+Before adding a block, ask: does a fair-minded skilled reader need this to get the point, to all intents and purposes? If not, omit it. Apply to examples, sections, sentences, and closing lines alike.
+
+## Default form
+
+State invariants, constraints, and procedures. Prefer imperatives and flat declarative sentences. Minimize connective tissue (therefore, however, additionally, it is important to note).
+
+Headings: `#` through `###` only.
+
+## Hard preferences
+
+- **No tables.** Use lists, short definition-style blocks, or prose. Tables are awkward in plain editors (e.g. vi).
+- **No tutorial structure.** No principle → example → counterexample → summary arcs.
+- **No duplicative summaries.** Do not restate material already given.
+- **No motivational framing** unless the brief explicitly requests that context — then treat it as first-class content, not preamble.
+
+## Examples and code
+
+- Do not illustrate a principle with narrative or before/after examples.
+- Code fragments are allowed when they *are* the rule: exact signatures, commands, literals, or shapes the reader must reproduce.
+- Prohibitions intrinsic to the definition are allowed (e.g. never use `init()` for package setup). Do not add contrast examples solely to teach by negation.
+
+## Procedures
+
+Use numbered steps when the procedure would be incomplete without them. Keep steps minimal; no commentary between steps unless required for correctness.
+
+## Cross-references
+
+When a doc depends on another, name it briefly. Do not recap the dependency's content.
+
+## Prompt overrides
+
+If the user or task brief asks for context, motivation, examples, or a specific shape, supply that — it is requested content, not a violation of this rule.
