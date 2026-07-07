@@ -1,0 +1,11 @@
+---
+description: Markdown writing conventions (placeholder)
+globs: **/*.md
+alwaysApply: false
+---
+
+# Markdown guidelines
+
+<!-- TODO: replace placeholder content -->
+
+Placeholder rules for markdown in this project.
