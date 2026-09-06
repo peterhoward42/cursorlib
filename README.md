@@ -20,6 +20,7 @@ Cursor Agent skills: Markdown packs under `skills/<topic>/SKILL.md`. Go, TypeScr
 - **Go application shape** — [`http-handler-dependency-injection`](skills/http-handler-dependency-injection/SKILL.md) with [`go-coding`](skills/go-coding/SKILL.md) and [`refactoring`](skills/refactoring/SKILL.md) when restructuring handlers.
 - **Hygiene** — [`dedupe-preemptive`](skills/dedupe-preemptive/SKILL.md) before new helpers; [`documentation-skim`](skills/documentation-skim/SKILL.md) for skim-oriented comments.
 - **Planning** — [`planning-phases`](skills/planning-phases/SKILL.md) for phased plans with inline progress tags.
+- **Task control flow** — [`procedural-task-entry-points`](skills/procedural-task-entry-points/SKILL.md) when a linear user journey would otherwise become a continuation-registration gate.
 
 ## Skill index
 
@@ -29,6 +30,7 @@ Cursor Agent skills: Markdown packs under `skills/<topic>/SKILL.md`. Go, TypeScr
 - [`go-linting`](skills/go-linting/SKILL.md) — Run `golangci-lint` and fix reported issues when requested.
 - [`http-handler-dependency-injection`](skills/http-handler-dependency-injection/SKILL.md) — Handlers as composition roots; logic on `Application` with explicit `Dependencies`.
 - [`planning-phases`](skills/planning-phases/SKILL.md) — Brief phased plans in markdown with inline DONE tags.
+- [`procedural-task-entry-points`](skills/procedural-task-entry-points/SKILL.md) — Task owns the story; reject offer/proceed continuation bags for linear gates (exception: DRY wrapping orchestrators).
 - [`refactoring`](skills/refactoring/SKILL.md) — Strengthen separation of concerns without behavior change.
 - [`semantic-rename-auditor-for-go`](skills/semantic-rename-auditor-for-go/SKILL.md) — Correct misleading names in small batches; semantics only.
 - [`shorten-names-js`](skills/shorten-names-js/SKILL.md) — Shorten overlong JS/TS names while preserving meaning.
