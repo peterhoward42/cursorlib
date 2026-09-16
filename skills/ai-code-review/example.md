@@ -3,15 +3,15 @@
 
 ## Preamble
 
-- The code example code review guide starts lower down this page after the
-  horizontal rule section delimeter
-- This preamble is to give you just enough orientation about the code it is
-  reviewing -so you can make sense of it
+- I reproduce in full, an example code review guide this skill produced - lower
+  down the page.
+- This preamble however, is to give you just enough orientation of the repo the
+  that the changed code lives in
 
 ### Just sufficient orientation
 
 The code is part of a javascript web app for technical drawing that stores 
-the drawing files they create on their own Google Drive.  (Drive)
+the drawing files the users create on their own Google Drive.  (Drive)
 
 Its architecture for Identity, Authorisation and Access Permissions is 
 Google's *Google Identity Services OAuth 2.0 Token Model / Token Client*
@@ -19,20 +19,20 @@ Google's *Google Identity Services OAuth 2.0 Token Model / Token Client*
 For the purposes of this code review you need to know that every Drive related
 action seeks a new token from Google's token client, which, when necessary,
 invokes Google's popups for Google Sign In and the permission's gate, but then
-yields a token that is good for approximately one hour.
+yields a token that is good for approximately one hour within that browser
+session.
 
-
-## Some shorthand terms the review guide uses:
+## Some shorthand terms the LLM chose to use in the generated guide
 
 - gapi = Google API
 - 401 = http access denied return code
-- DrawExact = name of the product DrawExact
+- DrawExact = name of the product the code implements
 - bearer = Bearer Token
-- DriveWrapper = low level single place in code that all Drive operations go through
+- DriveWrapper = high level single place in code that all Drive operations go through
 - developer fake = a developer only switch to fake token expiry for testing
 - fake expiry = same
 - drive ops = Drive Operations
-- runDriveOperation = high level single place that wraps every Drive CRUD
+- runDriveOperation = low level single place that wraps every Drive CRUD
   operation with a token aquirer
 
 ---
