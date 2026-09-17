@@ -18,9 +18,13 @@ Before adding a block, ask: does a fair-minded skilled reader need this to get t
 
 ## Default form
 
-State invariants, constraints, and procedures. Prefer imperatives and flat declarative sentences. Minimize connective tissue (therefore, however, additionally, it is important to note).
+Prefer brevity, but not the degree that the copy becomes hard to parse and take
+in. Some connective tissue is needed to reduced the reader's cognitive load, but
+balance this with the desire for brevity.
 
-Headings: `#` through `###` only.
+The sequence of material should be organised to create an information delivery 
+flow that builds on what has been stated earlier. 
+
 
 ## Hard preferences
 
@@ -41,7 +45,8 @@ Use numbered steps when the procedure would be incomplete without them. Keep ste
 
 ## Cross-references
 
-When a doc depends on another, name it briefly. Do not recap the dependency's content.
+When a doc depends on another, name it briefly. Say why it is a dependency. 
+Do not recap the dependency's content.
 
 ## Prompt overrides
 
