@@ -29,6 +29,7 @@ Cursor Agent skills: Markdown packs under `skills/<topic>/SKILL.md`. Go, TypeScr
 - [`go-coding`](skills/go-coding/SKILL.md) — Mandatory Go edit rules (e.g. no `init()` for package setup).
 - [`go-linting`](skills/go-linting/SKILL.md) — Run `golangci-lint` and fix reported issues when requested.
 - [`http-handler-dependency-injection`](skills/http-handler-dependency-injection/SKILL.md) — Handlers as composition roots; logic on `Application` with explicit `Dependencies`.
+- [`one-shot-deploy`](skills/one-shot-deploy/SKILL.md) — DrawExact: edit, validate, commit, `make deploy` for trivial changes; triggered only by the phrase "one shot deploy".
 - [`planning-phases`](skills/planning-phases/SKILL.md) — Brief phased plans in markdown with inline DONE tags.
 - [`procedural-task-entry-points`](skills/procedural-task-entry-points/SKILL.md) — Task owns the story; reject offer/proceed continuation bags for linear gates (exception: DRY wrapping orchestrators).
 - [`refactoring`](skills/refactoring/SKILL.md) — Strengthen separation of concerns without behavior change.
