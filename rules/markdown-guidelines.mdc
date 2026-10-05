@@ -1,53 +1,67 @@
 ---
 description: >-
-  Markdown for skills, rules, and docs: brief, expert-facing prose; include
-  only what a skilled reader needs; no tables, tutorial structure, or padding.
-globs: "**/*.md"
+  How to write Markdown (docs, plans, reviews, skills, and rules) for Pete:
+  connected prose that builds ideas in order, in full sentences and
+  paragraphs. Keep it short by choosing what to include, not by compressing
+  how it is said.
+globs: "**/*.md,**/*.mdc"
 alwaysApply: false
 ---
 
 # Markdown guidelines
 
-## Audience
+## Who the reader is
 
-Assume an engaged reader with relevant prior knowledge. Use domain terms for precision and brevity; do not onboard or gloss.
+Every Markdown file in these repositories is written for Pete. That includes skills and rules, even though an agent is their immediate consumer, because Pete reads them whenever he needs to change them.
 
-## Inclusion test
+Pete is a very experienced software developer, fluent in the language and specialist terminology of computer science and software engineering. He is intellectually able and absorbs conceptual material easily. Once he understands why something is true, it becomes part of how he thinks and he does not need to hold it in mind deliberately.
 
-Before adding a block, ask: does a fair-minded skilled reader need this to get the point, to all intents and purposes? If not, omit it. Apply to examples, sections, sentences, and closing lines alike.
+His short-term working memory, by contrast, is poor. Dense, compressed writing makes him hold many disconnected pieces at once while he works out how they relate, and that is exactly the effort he finds hardest. Writing that builds its ideas up in sequence, and connects each one to the last, lets every idea settle before the next arrives. His difficulty is therefore never with what a technical term means. It is with keeping track of the new pieces a particular document introduces.
 
-## Default form
+The rest of this rule follows from that profile. When a choice is not covered here, prefer whichever option asks less of the reader's working memory.
 
-Prefer brevity, but not the degree that the copy becomes hard to parse and take
-in. Some connective tissue is needed to reduced the reader's cognitive load, but
-balance this with the desire for brevity.
+## Build the ideas in order
 
-The sequence of material should be organised to create an information delivery 
-flow that builds on what has been stated earlier. 
+Open by saying what the document is about and what its central idea is, so the reader knows what the details that follow are for. Then introduce each concept before anything relies on it, and order the material so that each section stands on the ones before it.
 
+Give reasons alongside facts. A reason turns a fact into something understood rather than something memorised, and understanding is what Pete retains well. This is different from promotional motivation, which is covered below.
 
-## Hard preferences
+When a term or idea that this document introduced returns after a gap, remind the reader briefly what it is, in a clause rather than a paragraph. Established terms of the field need no such help, so use them freely and without explanation.
 
-- **No tables.** Use lists, short definition-style blocks, or prose. Tables are awkward in plain editors (e.g. vi).
-- **No tutorial structure.** No principle → example → counterexample → summary arcs.
-- **No duplicative summaries.** Do not restate material already given.
-- **No motivational framing** unless the brief explicitly requests that context — then treat it as first-class content, not preamble.
+## Write in paragraphs and full sentences
 
-## Examples and code
+Prose is the default. Each paragraph develops one idea, its opening sentence says what that idea is, and it connects to the paragraph before. Write complete sentences. Words such as "because", "so", and "which means" are welcome whenever they carry the logic between ideas, since that logic is what the reader would otherwise have to reconstruct for himself.
 
-- Do not illustrate a principle with narrative or before/after examples.
-- Code fragments are allowed when they *are* the rule: exact signatures, commands, literals, or shapes the reader must reproduce.
-- Prohibitions intrinsic to the definition are allowed (e.g. never use `init()` for package setup). Do not add contrast examples solely to teach by negation.
+Avoid fragments, arrow chains, shorthand, and invented labels that the reader must remember and look up later.
 
-## Procedures
+## Use structure where it helps the journey
 
-Use numbered steps when the procedure would be incomplete without them. Keep steps minimal; no commentary between steps unless required for correctness.
+Headings mark the stages of the journey and let the reader find his place again. They do not replace the sentences that connect one section to the next.
 
-## Cross-references
+Lists suit items that are genuinely parallel and separate, such as files, commands, options, or the fields of a definition. Reasoning belongs in paragraphs, not in bullets. If a list item needs explaining, write the explanation as a sentence. Use numbered steps for a procedure whose order matters.
 
-When a doc depends on another, name it briefly. Say why it is a dependency. 
-Do not recap the dependency's content.
+Do not use tables. They are awkward to read and edit in plain editors such as vi.
 
-## Prompt overrides
+## Keep it short by choosing what to include
 
-If the user or task brief asks for context, motivation, examples, or a specific shape, supply that — it is requested content, not a violation of this rule.
+Length comes from what the document covers, not from how it is phrased. Shorten a document by leaving material out, never by compressing the sentences that remain. Leave out the following.
+
+- Material the reader does not need for the document's purpose, including detail that the code or another document already makes plain.
+- Padding: promotional framing about why something matters or how useful it will be, preamble that delays the point, and closing summaries that repeat what has just been said. A brief reminder in the middle of a document, which brings back an idea the next step depends on, is not this kind of repetition.
+- Formulaic teaching shapes, such as a principle followed by an example, a counterexample, and a recap. Use an example only when it makes an idea clearer than the prose alone can. Skills and rules have one exception, for counterexamples, described in the section on them below.
+
+Include code fragments when they are the thing the reader must reproduce, such as exact commands, signatures, literals, or trigger phrases, and keep them exact.
+
+## Refer to other documents briefly
+
+When one document depends on another, name it, link it, and say in a sentence why it matters here. Do not recap its content.
+
+## Skills and rules
+
+Skills and rules follow the same style. Agents understand connected prose perfectly well, so directives can sit inside ordinary sentences without being reduced to fragments. Put the exact details an agent must match, such as trigger phrases, paths, and commands, in code formatting, and use numbered steps where an agent must follow an order.
+
+A counterexample is allowed in a skill or rule when an agent is likely to misapply an instruction without one. Agents generalise from instructions, and a principle stated only in positive terms can leave the boundary of what it covers unclear. A short example of the near-miss to avoid marks that boundary. Present it alongside the correct form and label it plainly as what not to do, because an unlabelled example of the wrong pattern can lead an agent to copy it.
+
+## When the brief asks for something else
+
+If the user or the task asks for a particular shape, length, or style, follow that request instead.
