@@ -41,12 +41,16 @@ The agent composes it. It becomes the squash title on both `main`s and Vercel's 
 
 ## Recipe
 
-1. **Preflight**. In both repos: `git branch --show-current` matches and is not `main`. `git status --short` must be empty, with one exception: if dxact-wasm `docs/log.txt` is the only dirty path, run `git stash push -m one-shot-deploy -- docs/log.txt` there. Any other dirty path: stop and report.
+1. **Preflight**. In both repos: `git branch --show-current` matches and is not `main`. `git status --short` must be empty apart from these expected paths:
+   - dxact-wasm `docs/log.txt`: run `git stash push -m one-shot-deploy -- docs/log.txt` there.
+   - dxact-draw `public/main.wasm`: a build artifact that `make exportwasm` (also run by `make rundev`) routinely overwrites, and that deploy rebuilds and commits from squashed `main`. Discard it with `git restore -- public/main.wasm` there.
+
+   Any other dirty path: stop and report, touching nothing.
 2. **Edit**. Apply the relevant coding skills. Update comments and docs that describe the old behaviour; reuse existing helpers before adding new ones.
 3. **Validate**, for each repo touched:
    - dxact-draw: `npm test`, `npm run build`, lints on edited files.
    - dxact-wasm: `make allnative`. Run it before committing: `go generate` / `go mod tidy` may dirty the tree, and deploy refuses a dirty tree.
-   - Confirm `git status --short` shows only intended files (build output such as `dist/` must stay ignored).
+   - Confirm `git status --short` shows only intended files (build output such as `dist/` must stay ignored). If dxact-draw `public/main.wasm` has been rewritten, restore it as in preflight rather than committing it; deploy refuses a dirty tree.
 4. **Commit** on the feature branch, only in repos with changes. One-line message in the repo's existing style. Feature commits are squashed away; the deploy message replaces them on `main`.
 5. **Dry run**, from `dxact-wasm`: `make deploy MSG='<message>' DRY_RUN=1`. Gates run for real; no mutations.
 6. **Deploy**, from `dxact-wasm`: `make deploy MSG='<message>'`. Allow several minutes. Success ends with `deploy: ok`.
