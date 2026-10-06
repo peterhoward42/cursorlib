@@ -24,6 +24,7 @@ Cursor Agent skills: Markdown packs under `skills/<topic>/SKILL.md`. Go, TypeScr
 
 ## Skill index
 
+- [`code-review-findings`](skills/code-review-findings/SKILL.md) — DrawExact: perform a code review and report a few prioritised findings, judged by Pete's sensitivities; pairs with `ai-code-review`, which writes a navigation guide instead.
 - [`cursorlib-change`](skills/cursorlib-change/SKILL.md) — Edit skills and rules in this repo, then commit, push, and install via DrawExact make targets; triggered only by the phrase "cursorlib change".
 - [`dedupe-preemptive`](skills/dedupe-preemptive/SKILL.md) — Reuse existing constructs by semantic role before new helpers, fakes, fixtures.
 - [`documentation-skim`](skills/documentation-skim/SKILL.md) — Comments and file-level orientation for skim-reading.

@@ -20,13 +20,15 @@ description: >-
 
 Before any edit:
 
-1. `git -C ~/repos/cursorlib status --short` must be empty, then `git -C ~/repos/cursorlib pull --ff-only`.
-2. Drift check; each must print nothing:
+1. Run `git -C ~/repos/cursorlib status --short`. Every entry must belong to a skill folder or rule file that the prompt names, or be `README.md`. Then run `git -C ~/repos/cursorlib pull --ff-only`.
+2. Drift check; each must report differences only for the skills or rules the prompt names:
    - `diff -rq -x .DS_Store ~/repos/cursorlib/skills ~/.cursor/skills`
    - `diff -rq -x .DS_Store ~/repos/cursorlib/rules ~/repos/dxact/dxact-wasm/.cursor/rules`
    - `diff -rq -x .DS_Store ~/repos/cursorlib/rules ~/repos/dxact/dxact-draw/.cursor/rules`
 
-On any failure, stop and report. Drift means an installed copy was edited or the install is stale; the user decides whether to fold it into cursorlib or discard it.
+These allowances exist because a change is sometimes drafted in cursorlib during an ordinary chat, before this skill is invoked. Such a draft shows up as uncommitted work, and as a difference from the installed copy, for exactly the skills or rules it touches, and this skill adopts it as its own work in progress. Report which uncommitted changes were adopted.
+
+On any other failure, stop and report. That includes uncommitted changes or differences outside the named skills and rules, and a pull that refuses because of local changes. Drift means an installed copy was edited or the install is stale; the user decides whether to fold it into cursorlib or discard it.
 
 ## Phase 2: Authoring
 
