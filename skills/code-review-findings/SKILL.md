@@ -119,17 +119,41 @@ A point in one of these areas still qualifies when it causes a real defect, misl
 
 Before including a finding, ask whether Pete would act on it or want to discuss it. If he would read it and move on, leave it out. Aim for three to five findings, and never exceed seven. When more candidates clear the bar, keep the ones that most affect correctness, a reader's understanding, and architectural ownership, in that order. Several instances of one pattern make one finding, not several.
 
+Do not raise a symptom that the fix for another finding removes. A warning comment on a field, or a name that no longer fits, disappears when the field moves to its owner, so it belongs inside that finding's fix rather than beside it.
+
 If nothing clears the bar, say so plainly. Never manufacture findings to make a review look thorough.
 
 The opposite case also needs saying plainly. When the problems are too numerous to list without overwhelming Pete, the verdict should say that the change, or a named part of it, is a mess that needs serious attention. Then describe the dominant problems as a few themes, with one or two representative locations each, instead of listing every instance. A short review of a bad change is correct; it should not hide how bad the change is.
 
 ## Delivering the review
 
-Write the review as a Markdown document in the repo, beside the plan or analysis document that the change implements, or in `dxact-wasm/docs/planning/` when there is none. Name it `<topic>-review-findings.md`. Follow the `ai-code-review` skill's link rules: paths relative to the document, no line fragments, line numbers given in the prose, and every link target checked before finishing. Follow the `markdown-guidelines` rule for the prose.
+Write the review as a Markdown document in the repo, beside the plan or analysis document that the change implements, or in `dxact-wasm/docs/planning/` when there is none. Name it `<topic>-review-findings.md`. Follow the `ai-code-review` skill's link rules: paths relative to the document, no line fragments, and every link target checked before finishing. Follow the `markdown-guidelines` rule for the prose.
 
-Open with a paragraph that states the scope reviewed, by repo and commit range, and the verdict. The verdict is one of four: the change is sound, it is sound with points worth acting on, it has a problem to fix before merging, or it needs serious attention because its problems are too numerous to list. Name the most important finding in that paragraph, so that the opening alone tells Pete what he most needs to know.
+Pete must be able to hold each finding in his head after one reading. A finding that needs rereading has failed, however accurate it is, so readability outranks completeness of evidence.
 
-Then give the findings as numbered sections, most important first. Each section heading is a sentence that states the problem. The body links to the location and gives the line number, explains what is wrong and why it matters to a reader or to the architecture, and suggests a direction without writing the patch. Close each finding with a proposed disposition, which is one of fix now, discuss, or record in `docs/backlog.md` as debt. Pete deliberately carries some debt, so recording it is a legitimate outcome rather than a cop-out.
+Open with a short paragraph: the scope reviewed, by repo and commit range; the verdict; one sentence on whether anything casts doubt on correctness; and the most important finding. The verdict is one of four: the change is sound, it is sound with points worth acting on, it has a problem to fix before merging, or it needs serious attention because its problems are too numerous to list. Do not list what was checked and found fine.
+
+Then give the findings as numbered sections, most important first, each in this shape:
+
+```markdown
+## 1. <A sentence stating the problem>
+
+Kind: <familiar label>. Correctness: <unaffected | affected, and how>.
+
+<One or two sentences on what is wrong and why it matters.>
+
+Fix: <one or two sentences on the remedy, without writing the patch.>
+
+Where: <links, with line numbers>.
+
+Disposition: <fix now | discuss | debt>.
+```
+
+- Kind names the fault in terms Pete already maps to a remedy: separation of concerns, single-responsibility violation, duplication, leaky ownership, misleading comment, naming, dead code, plumbing, first-time introduction, missing test, or defect. The label describes a finding; the bar for raising one is still the narrower one set out above.
+- The problem and the fix together stay within about 80 words.
+- In the prose, refer to code by its role, such as "the family index", and keep identifiers to one or two per sentence. File names, identifiers and line numbers go in the Where line.
+- Recommend one fix. Do not add a fallback such as "if that is more than you want, the smaller fix is". The exception is a naming finding, which offers two or three alternatives with a recommendation.
+- Fix now is the default. Use discuss only when a decision is genuinely Pete's to make, and state that decision as one question in the Fix line. Use debt, meaning record it in `docs/backlog.md`, when the fix costs more than it is worth now; Pete deliberately carries some debt, so that is a legitimate outcome rather than a cop-out.
 
 The numbering lets Pete triage with short replies such as `1: fix, 2: discuss, 3: debt`, or with `pch todo` remarks in the document. When he asks to discuss a finding, discuss it without changing code.
 
