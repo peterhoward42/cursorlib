@@ -19,7 +19,21 @@ Write the guide as a Markdown document in the repo being reviewed, beside the pl
 
 ## What the guide covers
 
-Open with the scope. Say which repos and files changed, whether the changes are committed, and which areas of the product are untouched. Then cover, where they apply, why the code changed, what changed conceptually, and the essence of the change rather than its detail. Link the plan or issue that asked for the change rather than restating it.
+Open with the scope. Say which repos and files changed, whether the changes are committed, and which areas of the product are untouched. Then say what changed conceptually, as the next section describes, and give the essence of the change rather than its detail.
+
+Pete already knows why the change was wanted, because he asked for it and usually wrote or agreed the plan. So do not retell the history or the motivation. Link the plan or issue that asked for the change instead.
+
+## Frame what changed conceptually
+
+This is the part of the guide Pete reads first and relies on most, and it fails when it is written in the change's own vocabulary. Write it in three steps.
+
+1. Open with the change as Pete would put it himself: the old shape and the new shape, one or two sentences each, in everyday words. For example, "The complicated back system is ripped out, and a simple one goes in its place," followed by a sentence on how each one works.
+2. Then go part by part through the things the change affects, such as each control, each screen, a slow fetch, the address bar, or desktop. For each, say what the new shape means for it, in terms of what the user sees or what the code now does.
+3. Leave the code's names until the plain meaning is in place. When the code has a name for an idea, such as a module or a function, give the everyday meaning first and then say once what the code calls it.
+
+Do not lead with labels that the change itself introduced, because the reader has nothing to attach them to yet. A sentence such as "Only the latest move touches the wait" is what not to write before the guide has said, in plain words, what a move is and what the wait is.
+
+The same plain words carry through the rest of the guide, including the survey, the verification, and the open items.
 
 ## Survey the code in a helpful order
 
