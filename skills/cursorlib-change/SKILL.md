@@ -13,7 +13,7 @@ description: >-
 
 - **Master**: `~/repos/cursorlib` (GitHub `peterhoward42/cursorlib`), `main` only, no PRs. Skills in `skills/<name>/SKILL.md`, rules in `rules/*.mdc`, index in `README.md`.
 - **Installed skills**: `~/.cursor/skills`, global. Installing from any project updates every project.
-- **Installed rules**: `<project>/.cursor/rules`, per project and gitignored. Installed into `~/repos/dxact/dxact-wasm` and `~/repos/dxact/dxact-draw`, both by the `dxact-wasm` Makefile. `dxact-draw` has no Makefile, and `~/repos/dxact` itself holds no Cursor files.
+- **Installed rules**: `<project>/.cursor/rules`, per folder. Installed into `~/repos/dxact/dxact-wasm` and `~/repos/dxact/dxact-draw`, where they are gitignored, and into the parent `~/repos/dxact`, which is not a git repository, all by the `dxact-wasm` Makefile. `dxact-draw` has no Makefile.
 - The install targets `rm -rf` their destination before copying. Edits anywhere but cursorlib are lost on the next install, so cursorlib is the only place to edit.
 
 ## Phase 1: Preflight
@@ -25,6 +25,7 @@ Before any edit:
    - `diff -rq -x .DS_Store ~/repos/cursorlib/skills ~/.cursor/skills`
    - `diff -rq -x .DS_Store ~/repos/cursorlib/rules ~/repos/dxact/dxact-wasm/.cursor/rules`
    - `diff -rq -x .DS_Store ~/repos/cursorlib/rules ~/repos/dxact/dxact-draw/.cursor/rules`
+   - `diff -rq -x .DS_Store ~/repos/cursorlib/rules ~/repos/dxact/.cursor/rules`
 
 These allowances exist because a change is sometimes drafted in cursorlib during an ordinary chat, before this skill is invoked. Such a draft shows up as uncommitted work, and as a difference from the installed copy, for exactly the skills or rules it touches, and this skill adopts it as its own work in progress. Report which uncommitted changes were adopted.
 
@@ -46,7 +47,7 @@ Only after an explicit go-ahead such as "publish it". Agreement that the content
 
 1. **Commit** in cursorlib, staging only the intended paths. One-line message matching `git log --oneline` tone, e.g. `Add one-shot-deploy skill for trivial DrawExact changes`, `Soften markdown rule`.
 2. **Sync**: `git pull --rebase`, then `git push`. On a rebase conflict, `git rebase --abort` and report.
-3. **Install**: `make -C ~/repos/dxact/dxact-wasm install-cursorlib`. This installs skills globally and rules into both wasm and draw.
+3. **Install**: `make -C ~/repos/dxact/dxact-wasm install-cursorlib`. This installs skills globally, and rules into wasm, draw and their parent folder.
 4. **Verify**: the Phase 1 drift check prints nothing, and `git -C ~/repos/cursorlib status -sb` shows `main...origin/main` with nothing ahead or behind.
 
 Never force-push, commit drafts, or edit the Makefiles to get through.
