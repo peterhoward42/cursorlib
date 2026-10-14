@@ -1,0 +1,37 @@
+---
+description: >-
+  For all DrawExact work, design and code: choose what gives the most coherent,
+  simplest product, never what changes the least existing code. DrawExact has
+  no real users yet, so the code it has is not a constraint.
+alwaysApply: true
+---
+
+# Coherence over minimal change
+
+When there is a choice in how to do something, judge each option by the result: how coherent and simple the product and its code would be afterwards. How much existing code an option changes is not a cost to weigh. This applies to product design as much as to code, and Pete wants it applied without asking.
+
+The reason is that DrawExact has no real users yet. No one's habits, data or integrations depend on how it works today, so the existing code records earlier decisions rather than commitments. Changing it costs only effort, which is cheap now and grows dearer once there are users. A design that looks as though it had always been that way is worth that effort.
+
+## What a better result looks like
+
+Coherence and simplicity are judged by the established measures of good design, and an option that does better on them is the better option, whatever it costs to reach. In code, these are the measures that matter most.
+
+- Concerns are separated: each module, file and function has one responsibility and one reason to change, and where one concern ends and the next begins is plain.
+- Coupling is low and dependencies run in one clear direction, so a change in one place does not ripple through others.
+- Cohesion is high: what changes together lives together.
+- The concerns are readable from the structure and the names, so a reader can find where something is handled without tracing calls.
+- Each thing is done one way. A second pattern for the same job is drift, so unify the two.
+- Data flow is explicit, and state is held in as few places as possible.
+- It is no more abstract than the problem needs. Simplicity cuts against speculative layers and indirection as much as against duplication.
+
+Product design has the same measures in its own terms: one concept for one job, the same words for the same thing everywhere, and as few states, flags and variants as the experience allows.
+
+## What it rules out
+
+Do not reach for something because it already exists. Reuse a flag, event, component or word only when it means exactly what the new work needs; otherwise create the one that fits and retire the old. Not this: reusing a stored "Drive connected" flag to mean "owns drawings", when a newcomer can connect and own nothing.
+
+## Agreed product decisions
+
+Decisions agreed with Pete on product grounds are not code. When coherence argues for reopening one, such as wording tuned on real phones, say so and give the reason, rather than changing it silently.
+
+Revisit this rule once DrawExact has real users.
