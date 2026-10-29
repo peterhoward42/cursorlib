@@ -2,8 +2,11 @@
 name: planning-phases
 description: >-
   Produce brief, phased implementation plans in markdown with inline progress
-  tags, sized for reliable delivery across sessions. Use when the user asks for
-  a plan, roadmap, implementation strategy, or multi-step refactor design.
+  tags, sized for reliable delivery across sessions. Also covers scripted
+  orchestration that runs each phase in a fresh Cursor agent session via a
+  fail-fast runner. Use when the user asks for a plan, roadmap, implementation
+  strategy, multi-step refactor design, unattended multi-phase execution,
+  a phase runner, or one new Cursor session per phase.
 ---
 
 # Cursor Skill: Planning Phases
@@ -15,6 +18,12 @@ markdown that is reliable to execute and can be split across consecutive
 sessions without losing LLM context.
 
 The plan is the single source of truth. Keep the narrative terse.
+
+When the user also wants the work driven unattended across sessions, extend
+the same plan with an **execution model** and a **runner** that starts one
+fresh Cursor agent per phase. Details are under Scripted multi-session
+orchestration below, with a copyable template at
+[scripts/run_phases.py](scripts/run_phases.py).
 
 ---
 
@@ -130,6 +139,11 @@ Default markdown outline:
 Adjust sections only when the user asks for a different shape. Keep optional
 sections out unless they add information not already in the phases.
 
+When the plan will be script-orchestrated, add an **Execution model** section
+and give every implementation phase an **Exit gate** (see below). Prefer a
+leading **phase 0** whose only job is to write the runner, unless the user
+already has a runner and only wants the remaining phases executed.
+
 ---
 
 ## Session Splitting
@@ -144,6 +158,89 @@ Size phases so each can be handed to a fresh session with minimal re-discovery:
 
 ---
 
+## Scripted multi-session orchestration
+
+Use this when the user wants to start a runner and come back to finished
+(usually **uncommitted**) work: one **fresh** Cursor agent session per phase,
+driven by a script that owns iteration, logging, and fail-fast gating.
+
+This is the captured form of the Cut-command runner precedent: a Python script
+shells out to the headless `agent` CLI once per phase, with the plan file as
+shared state via inline `— DONE` tags.
+
+### When to add it
+
+Add orchestration to the plan when the user asks for unattended execution, a
+phase runner, walk-away completion, or one new Cursor session per phase. Do
+not invent a runner for ordinary interactive phase-by-phase work unless they
+ask.
+
+### Execution model (in the plan)
+
+State these rules once in the plan, not again in every phase:
+
+- One fresh Cursor agent session per phase — no shared chat context.
+- The plan file is the single source of truth; each session receives its phase
+  number and reads scope from the plan.
+- Sequential and fail-fast: the next session starts only after the current
+  phase's exit gate passes.
+- No git commits or pushes unless the user explicitly opts in.
+- On success, every completed phase heading carries `— DONE`.
+
+### Phase 0 — write the runner
+
+Phase 0 produces the script only. It does not implement the feature.
+
+Copy [scripts/run_phases.py](scripts/run_phases.py) into the repo (typical
+home: next to other project scripts), then fill in plan path, workspace,
+phase list, and per-phase exit-gate commands. The template already:
+
+1. Preflights that `agent` is on `PATH` and headless auth works.
+2. Starts a **new** `agent --print --trust --force` process per phase.
+3. Passes a self-contained prompt: plan path, phase number, read-the-plan
+   scope, mark `— DONE` on success, do not commit.
+4. After each agent returns, checks a completion sentinel in the agent
+   output, checks the plan heading is tagged `— DONE`, then runs that
+   phase's exit-gate shell command(s).
+5. Logs each phase and gate under a tmp log directory; stops on first
+   failure.
+6. Supports `--start-phase` / `--end-phase` for resume.
+
+**Exit gate for phase 0:** the script exists, is executable, and documents
+usage (`--help` or a header). Mark phase 0 `— DONE`, then run the script so
+it drives the remaining phases — unless auth or the user blocks that.
+
+Prefer the headless `agent` CLI on `PATH` (as in the template). Use the
+Cursor SDK (`Agent.prompt` / `Agent.create`) only when the user asks for it
+or the CLI is unavailable; keep the same session-per-phase and fail-fast
+contract either way.
+
+### Exit gates
+
+Every implementation phase must declare an **Exit gate** the runner can
+execute without trusting the agent's prose alone. Prefer concrete commands
+(`make test`, `npm test`, `go test ./...`). Subjective checks (smoke notes,
+checklists) need a stable sentinel string in the agent output that the runner
+asserts.
+
+### What persists between sessions
+
+The working tree and the plan's `— DONE` tags are the durable state. Runner
+logs explain where a fail-fast stop happened. Do not rely on chat history,
+and do not commit as a progress mechanism unless the user asked for commits.
+
+### What not to do
+
+- Do not continue the next phase inside the same agent process to "save a
+  session". Fresh context is the point.
+- Do not put the runner's phase scope essays only in the script when the plan
+  already states them — the agent reads the plan; the script names the phase
+  and enforces the gate.
+- Do not commit, push, or open a PR from the runner unless the plan's
+  execution model explicitly allows it.
+
+---
+
 ## Rejection Rules
 
 Do NOT produce plans that:
@@ -155,6 +252,8 @@ Do NOT produce plans that:
 - optimise for smallest change at the expense of coherent end-state code
 - retain orphaned code "just in case" without user instruction
 - discuss external backward compatibility unless the user raised it
+- promise unattended multi-phase execution without a runner, exit gates, and
+  the execution-model rules above
 
 ---
 
@@ -163,4 +262,7 @@ Do NOT produce plans that:
 Planning output is a **brief, numbered, markdown plan** with **inline DONE
 tags**, written for a **skilled reader**, describing an **end-state-shaped**
 implementation that **cleans up orphans** — split so it can be executed
- reliably across sessions.
+reliably across sessions. When the user wants that execution unattended,
+the plan also names the **runner**, **exit gates**, and **no-commit**
+(unless opted in) contract, and phase 0 lands a script that starts one
+fresh Cursor agent per remaining phase.
