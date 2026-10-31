@@ -45,7 +45,7 @@ Collaborative and iterative; nothing is committed in this phase.
 
 Only after an explicit go-ahead such as "publish it". Agreement that the content is right is not a go-ahead. Stop at the first failure.
 
-1. **Commit** in cursorlib, staging only the intended paths. One-line message matching `git log --oneline` tone, e.g. `Add one-shot-deploy skill for trivial DrawExact changes`, `Soften markdown rule`.
+1. **Commit** in cursorlib, staging only the intended paths. One-line message matching `git log --oneline` tone, e.g. `Add align-and-ship skill for DrawExact paired deploy`, `Soften markdown rule`.
 2. **Sync**: `git pull --rebase`, then `git push`. On a rebase conflict, `git rebase --abort` and report.
 3. **Install**: `make -C ~/repos/dxact/dxact-wasm install-cursorlib`. This installs skills globally, and rules into wasm, draw and their parent folder.
 4. **Verify**: the Phase 1 drift check prints nothing, and `git -C ~/repos/cursorlib status -sb` shows `main...origin/main` with nothing ahead or behind.

@@ -21,10 +21,12 @@ Cursor Agent skills: Markdown packs under `skills/<topic>/SKILL.md`. Go, TypeScr
 - **Hygiene** — [`dedupe-preemptive`](skills/dedupe-preemptive/SKILL.md) before new helpers; [`documentation-skim`](skills/documentation-skim/SKILL.md) for skim-oriented comments.
 - **Planning** — [`planning-phases`](skills/planning-phases/SKILL.md) for phased plans with inline progress tags, and for a fail-fast runner that drives each phase in a fresh Cursor agent session.
 - **Task control flow** — [`procedural-task-entry-points`](skills/procedural-task-entry-points/SKILL.md) when a linear user journey would otherwise become a continuation-registration gate.
+- **DrawExact ship** — [`align-and-ship`](skills/align-and-ship/SKILL.md) for paired-repo align-then-deploy; coding skills apply during the ship phase edit step.
 
 ## Skill index
 
 - [`ai-code-review`](skills/ai-code-review/SKILL.md) — Write a code review guide for generated code, complete enough to stand in for reading it: what changed, framed in plain words part by part, a survey order, verification done, and open items.
+- [`align-and-ship`](skills/align-and-ship/SKILL.md) — DrawExact: discuss until aligned, then paired throwaway branches, implement, validate, commit, `make deploy`; enter via align-and-ship workflow wording, ship only when a message starts with "We are now aligned, so proceed".
 - [`code-review-findings`](skills/code-review-findings/SKILL.md) — DrawExact: perform a code review and report a few prioritised findings, judged by Pete's sensitivities; pairs with `ai-code-review`, which writes a navigation guide instead.
 - [`cursorlib-change`](skills/cursorlib-change/SKILL.md) — Edit skills and rules in this repo, then commit, push, and install via DrawExact make targets; triggered only by the phrase "cursorlib change".
 - [`dedupe-preemptive`](skills/dedupe-preemptive/SKILL.md) — Reuse existing constructs by semantic role before new helpers, fakes, fixtures.
@@ -32,7 +34,6 @@ Cursor Agent skills: Markdown packs under `skills/<topic>/SKILL.md`. Go, TypeScr
 - [`go-coding`](skills/go-coding/SKILL.md) — Mandatory Go edit rules (e.g. no `init()` for package setup).
 - [`go-linting`](skills/go-linting/SKILL.md) — Run `golangci-lint` and fix reported issues when requested.
 - [`http-handler-dependency-injection`](skills/http-handler-dependency-injection/SKILL.md) — Handlers as composition roots; logic on `Application` with explicit `Dependencies`.
-- [`one-shot-deploy`](skills/one-shot-deploy/SKILL.md) — DrawExact: edit, validate, commit, `make deploy` for trivial changes; triggered only by the phrase "one shot deploy".
 - [`planning-phases`](skills/planning-phases/SKILL.md) — Brief phased plans in markdown with inline DONE tags; optional scripted multi-session runner (`scripts/run_phases.py`).
 - [`procedural-task-entry-points`](skills/procedural-task-entry-points/SKILL.md) — Task owns the story; reject offer/proceed continuation bags for linear gates (exception: DRY wrapping orchestrators).
 - [`refactoring`](skills/refactoring/SKILL.md) — Strengthen separation of concerns without behavior change.
